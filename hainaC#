@@ -1,0 +1,176 @@
+using System;
+
+class Program
+{
+   
+    static void LegalAgeIdentifier()
+    {
+        Console.Write("Enter your age: ");
+        if (int.TryParse(Console.ReadLine(), out int age))
+        {
+            if (age >= 18)
+                Console.WriteLine("Gurang kana boss");
+            else
+                Console.WriteLine("Bata kapa nak, uwi");
+        }
+        else
+        {
+            Console.WriteLine("Age");
+        }
+    }
+
+    
+    static void RandomNumberGenerator()
+    {
+        Console.Write("input lower number boi: ");
+        if (!int.TryParse(Console.ReadLine(), out int lower))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        Console.Write("Enter the upper bound: ");
+        if (!int.TryParse(Console.ReadLine(), out int upper))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        if (lower > upper)
+        {
+            Console.WriteLine("Lower bound must be less than or equal to upper bound.");
+            return;
+        }
+
+        Random rnd = new Random();
+        int randomNumber = rnd.Next(lower, upper + 1); // upper is exclusive
+        Console.WriteLine($"Random number between {lower} and {upper}: {randomNumber}");
+    }
+
+   
+    static void SimpleCalculator()
+    {
+        Console.Write("Enter first number: ");
+        if (!double.TryParse(Console.ReadLine(), out double num1))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        Console.Write("Enter operator (+, -, *, /): ");
+        string op = Console.ReadLine();
+
+        Console.Write("Enter second number: ");
+        if (!double.TryParse(Console.ReadLine(), out double num2))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        double result;
+
+        switch (op)
+        {
+            case "+":
+                result = num1 + num2;
+                Console.WriteLine($"Result: {result}");
+                break;
+            case "-":
+                result = num1 - num2;
+                Console.WriteLine($"Result: {result}");
+                break;
+            case "*":
+                result = num1 * num2;
+                Console.WriteLine($"Result: {result}");
+                break;
+            case "/":
+                if (num2 == 0)
+                {
+                    Console.WriteLine("Error: Cannot divide by zero.");
+                    return;
+                }
+                result = num1 / num2;
+                Console.WriteLine($"Result: {result}");
+                break;
+            default:
+                Console.WriteLine("Invalid operator.");
+                break;
+        }
+    }
+
+   
+    static void GradingSystem()
+    {
+        Console.Write("Enter your score (0 - 100): ");
+        if (!double.TryParse(Console.ReadLine(), out double score))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        if (score < 0 || score > 100)
+        {
+            Console.WriteLine("Score must be between 0 and 100.");
+            return;
+        }
+
+        string grade;
+
+        if (score >= 90)
+            grade = "Very Good";
+        else if (score >= 80)
+            grade = "Good";
+        else if (score >= 75)
+            grade = "Not bad";
+        else if (score >= 60)
+            grade = "Bawi sunod na bohai";
+        else
+            grade = "Ok din boss";
+
+        Console.WriteLine($"Your grade is: {grade}");
+    }
+
+    
+    static void MainMenu()
+    {
+        while (true)
+        {
+            Console.WriteLine("Hello brobro ko");
+            Console.WriteLine("1. Legal Age Identifier");
+            Console.WriteLine("2. Random Number Generator");
+            Console.WriteLine("3. Simple Calculator");
+            Console.WriteLine("4. Grading System");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your choice (1-5): ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    LegalAgeIdentifier();
+                    break;
+                case "2":
+                    RandomNumberGenerator();
+                    break;
+                case "3":
+                    SimpleCalculator();
+                    break;
+                case "4":
+                    GradingSystem();
+                    break;
+                case "5":
+                    Console.WriteLine("Thankyouverymuch");
+                    return;
+                default:
+                    Console.WriteLine("Please select from 1 to 5.");
+                    break;
+            }
+        }
+	}
+	
+    static void Main(string[] args)
+    {
+        MainMenu();
+    }
+}
